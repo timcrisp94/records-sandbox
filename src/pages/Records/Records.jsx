@@ -1,38 +1,37 @@
-import { useState } from 'react'
-// Don't forget to import useEffect!
-import { useEffect, useState } from 'react'
-
+import { useState, useEffect } from 'react'
+import { getRecords } from '../../services/api-calls'
+import { Link } from 'react-router-dom'
 
 const Records = (props) => {
   const [records, setRecords] = useState([])
 
   useEffect(()=> {
-    console.log('Component mounted!')
+    getRecords()
+    .then(records => setRecords(records.results))
   }, [])
   
   return ( 
     <>
-      <div>
-        <h2>Records</h2>
-        <div className="icon-container">
-          {/** 
-						* This is where we map over our results, representing 
-						* each with a div containing an image and a name 
-					*/}
-          {records.map((record) => (
-            <div id="record" key={record}>
-              <img 
-								style={{ width: "100px", height: "100px" }}
-								src={`/images/${record}.svg`} 
-								alt="record-cover"
-							/>
-              {record}
-            </div>
-          ))}
-        </div>
-      </div>
+     <h2>Records</h2>
+      <>
+        {records.map((record =>
+          <div key={record.index}>
+            <Link
+              to="/record"
+              state={{ record }}
+            >
+              {record.title}
+              </Link><br/>    
+       </div>
+      ))}
     </>
-  );
+    :
+    <>
+      <h2>Loading records..</h2>
+    </>
+  </>
+  ); 
 }
+
  
 export default Records;
