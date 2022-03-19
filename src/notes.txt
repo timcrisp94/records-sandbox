@@ -1,0 +1,36 @@
+npx create-react-app
+
+Records - state
+Record - component
+
+<Records />
+<Record />
+
+Recall: state
+  Presenational components
+  Container components
+
+Router
+npm i react-router-dom
+import {BrowserRouter as Router} from 'react-router-dom'
+
+Functional Component
+  const ComponentName = (props) => (
+  ...
+Class Component
+  {this.props.myProp}
+
+Props are immutable
+- components pass down methods via props that can update state
+
+NavBar
+mkdir src/components/NavBar
+mkdir src/components/NavBar/NavBar.jsx
+
+We will need state for each API search result
+  - all records{[]} 
+  - one record{}
+  - all{[]}
+  - one{}
+
+  
